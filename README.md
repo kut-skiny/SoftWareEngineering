@@ -13,3 +13,9 @@ branchの切り替え
 branchのプッシュ  
 `git push -u origin [branch名]`  
 各ブランチの作業をmasterブランチに反映させたい場合はPull Requestをおこなってください.  
+# masterブランチの変更を自分のブランチに反映させる
+　　　　git checkout [自分のブランチ名]  
+　　　　git checkout master  
+　　　　git pull  
+　　　　git checkout [自分のブランチ名]  
+　　　　git merge master  
