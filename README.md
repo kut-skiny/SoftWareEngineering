@@ -3,7 +3,7 @@
 # 注意点
 作業は各ブランチで行い、masterブランチでは作業をしないでください。  
 ブランチの作成方法を下に書いておきます。  
-branchの作成  
+branchの作成  
 `git branch [branch名]`  
 branchの切り替え  
 `git checkout [branch名]`  
