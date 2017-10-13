@@ -20,4 +20,4 @@ branchのプッシュ
 　　　　git checkout [自分のブランチ名]  
 　　　　git merge master  
 # メンバー
-永島
+永島康広
