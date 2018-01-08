@@ -75,7 +75,7 @@ $(function() {
   $("#phone").val(userdata.data6);
   $("#ip").val(userdata.data7);
   $('#button1').click(function() {
-    $.get('sample.php',
+    $.post('sample.php',
       {
         id: $('#userid').val(), name1: $('#name1').val(), name2: $('#name2').val()
       }
@@ -91,7 +91,7 @@ $(function() {
     });
   });
   $('#button2').click(function() {
-    $.get('sample.php',
+    $.post('sample.php',
       {
         id: $('#userid').val(), name1: $('#name1').val(), name2: $('#name2').val()
       }

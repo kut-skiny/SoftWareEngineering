@@ -52,7 +52,7 @@ $(function() {
     window.location.href = 'http://kihara-virtualbox/adminMyPage.html';
   });
   $('#button1').click(function() {
-    $.get('sample.php',
+    $.post('sample.php',
       {
         id: $('#userid').val(), name1: $('#name1').val(), name2: $('#name2').val()
       }

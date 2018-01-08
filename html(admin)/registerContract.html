@@ -63,13 +63,13 @@ $(function() {
     window.location.href = 'http://kihara-virtualbox/adminMyPage.html';
   });
   $('#button1').click(function() {
-    $.get('sample.php',
+    $.post('sample.php',
       {
         id: $('#userid').val(), name1: $('#name1').val(), name2: $('#name2').val()
       }
     )
     .done(function(data) {
-      window.alert('登録しました');
+      window.alert(data);
       window.location.href = 'http://kihara-virtualbox/registerContract.html';
     })
     .fail(function() {

@@ -78,7 +78,7 @@ $(function() {
 
   function aaa(usernum,username1,username2) {
     //document.write(userdata.users[num].data1);
-    $.get('sample.php',
+    $.post('sample.php',
       {
         id: userdata.users[usernum].data1, name1: userdata.users[usernum].data2, name2: userdata.users[usernum].data3
       }
