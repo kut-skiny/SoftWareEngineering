@@ -19,13 +19,11 @@ branchのプッシュ
 　　　　git pull  
 　　　　git checkout [自分のブランチ名]  
 　　　　git merge master  
-# メンバー
-永島康広
 
 # ローカル環境のmysqlにデータベースの設定を反映させる
-本システム用のデータベースを作成。データベース名は'mimic'とする。
-`$ mysql -u root`
-`mysql-> create database mimic;`
-`mysql-> quit;`
-カレントディレクトリを'SoftWareEngineering/db'にし、sqlファイルを実行する。
+本システム用のデータベースを作成。データベース名は'mimic'とする。  
+`$ mysql -u root`  
+`mysql-> create database mimic;`  
+`mysql-> quit;`  
+カレントディレクトリを'SoftWareEngineering/db'にし、sqlファイルを実行する。  
 `$ mysql -u root mimic < mimic_db_create.sql`
