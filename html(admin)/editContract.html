@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>契約変更・終了</title>
+<script type="text/javascript" src="/jquery-3.2.1.min.js"></script>
+<style type="text/css">
+ul li {
+  list-style:none;
+  width: 50%;
+  margin: 0 auto;
+  max-width: 500px;
+}
+label {
+  margin-right: 10px;
+  width: 40%;
+  float: left;
+  text-align: right;
+}
+ul {
+  width: 50%;
+  margin: 0 auto;
+}
+ul.buttons li{
+  display: inline;
+}
+ul.buttons{
+  text-align: center;
+}
+input#button1 {
+  margin: 0 auto;
+  width: 150px; height: 40px;
+}
+input#button2 {
+  margin: 0 auto;
+  width: 150px; height: 40px;
+}
+
+</style>
+
+</head>
+<body>
+<h1 id="top1"><left>　　ミミック　　</left></h1>
+<h1><center>契約変更・終了</center></h1>
+
+<form>
+  <div class="button">
+  <ul>
+  <p><li><label for="name1">契約者ID </label><input id="userid" type="text"/></li></p>
+  <p><li><label for="name2">契約者名 </label><input id="name1" type="text"/></li></p>
+  <p><li><label for="name3">薬箱利用者 </label><input id="name2" type="text"/></li></p>
+  <p><li><label for="name4">契約者パスワード </label><input id="pass" type="text"/></li></p>
+  <p><li><label for="name5">契約者メールアドレス </label><input id="mail" type="text"/></li></p>
+  <p><li><label for="name6">契約者電話番号 </label><input id="phone" type="text"/></li></p>
+  <p><li><label for="name7">ラズベリーパイIPアドレス </label><input id="ip" type="text"/></li></p>
+  </ul>
+  <ul class="buttons">
+  <li><input id="button1" type="button" value="変更" /></li>
+  <li><input id="button2" type="button" value="契約終了" /></li>
+  </ul>
+  </div>
+</form>
+<div class="result"></div>
+<script type="text/javascript">
+$(function() {
+  $(top1).click(function() {
+    window.location.href = 'http://kihara-virtualbox/adminMyPage.html';
+  });
+  var userdata = JSON.parse(localStorage.getItem("datalist2"));
+  //document.write(userdata.data1);
+  $("#userid").val(userdata.data1);
+  $("#name1").val(userdata.data2);
+  $("#name2").val(userdata.data3);
+  $("#pass").val(userdata.data4);
+  $("#mail").val(userdata.data5);
+  $("#phone").val(userdata.data6);
+  $("#ip").val(userdata.data7);
+  $('#button1').click(function() {
+    $.get('sample.php',
+      {
+        id: $('#userid').val(), name1: $('#name1').val(), name2: $('#name2').val()
+      }
+    )
+
+    .done(function(data) {
+      window.alert('変更しました');
+      window.location.href = 'http://kihara-virtualbox/resultSearch.html';
+      //$('.result').html(data);
+    })
+    .fail(function() {
+      window.alert('正しい結果を得られませんでした。');
+    });
+  });
+  $('#button2').click(function() {
+    $.get('sample.php',
+      {
+        id: $('#userid').val(), name1: $('#name1').val(), name2: $('#name2').val()
+      }
+    )
+
+    .done(function(data) {
+      window.alert('契約終了しました');
+      window.location.href = 'http://kihara-virtualbox/resultSearch.html';
+      //$('.result').html(data);
+    })
+    .fail(function() {
+      window.alert('正しい結果を得られませんでした。');
+    });
+  });
+});
+</script>
+</body>
+</html>
