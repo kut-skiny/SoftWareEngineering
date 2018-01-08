@@ -63,7 +63,7 @@ $(function() {
     window.location.href = 'http://kihara-virtualbox/adminMyPage.html';
   });
   $('#button1').click(function() {
-    $.get('sample.php',
+    $.post('sample.php',
       {
         id: $('#userid').val(), name1: $('#name1').val(), name2: $('#name2').val()
       }
@@ -79,17 +79,5 @@ $(function() {
 });
 </script>
 
-<script type="text/javascript">
-/*function check() {
-  var s = document.createElement('script');
-  a = document.form1.a.value;
-  b = document.form1.b.value;
-  param = "?a="+a+"&b="+b
-  s.src = '/cgi-bin/jsonp.py'+param;
-  document.body.appendChild(s);
-  return false;
-}*/
-
-</script>
 </body>
 </html>
