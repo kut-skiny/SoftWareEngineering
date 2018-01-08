@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>検索結果</title>
+<script type="text/javascript" src="/jquery-3.2.1.min.js"></script>
+<style type="text/css">
+td {
+  font-size: 100%;
+  text-align: center;
+}
+</style>
+
+</head>
+<body>
+<h1 id="top1"><left>　　ミミック　　</left></h1>
+<h1><center>検索結果</center></h1>
+<div class="result"></div>
+<table id="table1" border="1" align="center" width="30%" height="100%">
+
+</table>
+<form>
+  <ul>
+  </ul>
+</form>
+
+<script type="text/javascript">
+var userdata = JSON.parse(localStorage.getItem("datalist"));
+$(function() {
+
+  for(var i in userdata.users){
+    // テーブル取得
+    var table = document.getElementById('table1');
+    // 行を行末に追加
+    var row = table.insertRow(-1);
+    // セルの挿入
+    var cell1 = row.insertCell(-1);
+    var cell2 = row.insertCell(-1);
+    var cell3 = row.insertCell(-1);
+
+    row.id = 'row' + i ;
+
+    row.style.cssText = "text-align:right; width:400px;";
+    // セルの内容入力
+    cell1.innerHTML = '<div id="num' + i + '">' + userdata.users[i].data1 + '</div>';
+    cell2.innerHTML = '<div id="name1' + i + '">' + userdata.users[i].data2 + '</div>';
+    cell3.innerHTML = '<div id="name2' + i + '">' + userdata.users[i].data3 + '</div>';
+  }
+
+  //document.write(userdata.data1);
+  $(top1).click(function() {
+    window.location.href = 'http://kihara-virtualbox/adminMyPage.html';
+  });
+  if($("#row0").length){
+  $(row0).click(function() {
+    aaa("0","name10","name20");
+  });
+  }
+  if($("#row1").length){
+  $(row1).click(function() {
+    aaa("1","name11","name21");
+  });
+  }
+  if($("#row2").length){
+  $(row2).click(function() {
+    aaa("num2","name12","name22");
+  });
+  }
+  if($("#row3").length){
+  $(row3).click(function() {
+    aaa("num3","name13","name23");
+  });
+  }
+  if($("#row4").length){
+  $(row4).click(function() {
+    aaa("num4","name14","name24");
+  });
+  }
+
+  function aaa(usernum,username1,username2) {
+    //document.write(userdata.users[num].data1);
+    $.get('sample.php',
+      {
+        id: userdata.users[usernum].data1, name1: userdata.users[usernum].data2, name2: userdata.users[usernum].data3
+      }
+    )
+
+    .done(function(data) {
+      var datalist2 = {
+          data1: "hoge11",
+          data2: "hoge21",
+          data3: "hoge31",
+          data4: "hoge41",
+          data5: "hoge51",
+          data6: "hoge61",
+          data7: "hoge71",
+      }
+      localStorage.setItem("datalist2", JSON.stringify(datalist2));
+
+      window.location.href = 'http://kihara-virtualbox/editContract.html';
+
+
+      //$('.result').html(data);
+    })
+    .fail(function() {
+      window.alert('正しい結果を得られませんでした。');
+    });
+  }
+});
+
+
+
+
+</script>
+</body>
+</html>
