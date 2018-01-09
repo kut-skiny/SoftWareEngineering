@@ -21,9 +21,13 @@ branchのプッシュ
 　　　　git merge master  
 
 # ローカル環境のmysqlにデータベースの設定を反映させる
-本システム用のデータベースを作成。データベース名は'mimic'とする。  
+本システム用のデータベースを作成。データベース名は'mimic'とする。なお、予めmysqlは起動しておく。  
 `$ mysql -u root`  
 `mysql-> create database mimic;`  
 `mysql-> quit;`  
 カレントディレクトリを'SoftWareEngineering/db'にし、sqlファイルを実行する。  
 `$ mysql -u root mimic < mimic_db_create.sql`
+# mysqlに初期データを流し込む
+初期データを挿入する。ただし、元あるレコードはすべて削除される。なお、予めmysqlは起動しておく。  
+カレントディレクトリを'SoftWareEngineering/db'にし、sqlファイルを実行する。 
+`$ mysql -u root mimic < mimic_db_initialize.sql`
