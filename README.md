@@ -37,7 +37,7 @@ mysql-> quit;
 
 # mysqlに初期データを流し込む
 初期データを挿入する。ただし、元あるレコードはすべて削除される。なお、予めmysqlは起動しておく。  
-カレントディレクトリを'SoftWareEngineering/db'にし、sqlファイルを実行する。 
+カレントディレクトリを'SoftWareEngineering/db'にし、sqlファイルを実行する。  
 `$ mysql -u root mimic < mimic_db_initialize.sql`
 
 # mysqlのエンコード設定をutf-8にする
