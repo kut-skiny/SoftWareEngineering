@@ -18,7 +18,7 @@ CREATE TABLE users (
   created_at timestamp NOT NULL,
   updated_at timestamp,
   PRIMARY KEY (id)
-);
+) CHARSET=utf8;
 
 CREATE TABLE contracts (
   id char(8) NOT NULL,
@@ -31,7 +31,7 @@ CREATE TABLE contracts (
   updated_at timestamp,
   PRIMARY KEY (id),
   FOREIGN KEY (user_id) REFERENCES users(id)
-);
+) CHARSET=utf8;
 
 CREATE TABLE configurations (
   id char(8) NOT NULL,
@@ -52,14 +52,14 @@ CREATE TABLE configurations (
   updated_at timestamp,
   PRIMARY KEY (id),
   FOREIGN KEY (contract_id) REFERENCES contracts(id)
-);
+) CHARSET=utf8;
 
 create table histories (
   contract_id char(8) NOT NULL,
   acted_at timestamp NOT NULL,
   state enum('opend', 'no_response', 'go_out', 'return_home') NOT NULL,
   FOREIGN KEY (contract_id) REFERENCES contracts(id)
-);
+) CHARSET=utf8;
 
 CREATE TABLE administrators (
   id char(8) NOT NULL,
@@ -68,5 +68,5 @@ CREATE TABLE administrators (
   created_at timestamp NOT NULL,
   updated_at timestamp,
   PRIMARY KEY (id)
-);
+) CHARSET=utf8;
 
