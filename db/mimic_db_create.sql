@@ -17,7 +17,7 @@ CREATE TABLE `users` (
   `mail` varchar(64)
     NOT NULL
     DEFAULT 'example@mail.com',
-  `phone_number` int
+  `phone_number` varchar(16)
     DEFAULT NULL,
   `address` varchar(64)
     DEFAULT NULL,
@@ -43,8 +43,8 @@ CREATE TABLE `contracts` (
     NOT NULL,
   `partner` varchar(64)
     DEFAULT NULL,
-  `ip_address` int
-    DEFAULT 0,
+  `ip_address` int unsigned
+    DEFAULT NULL,
   `started_at` timestamp
     NOT NULL
     DEFAULT 0,

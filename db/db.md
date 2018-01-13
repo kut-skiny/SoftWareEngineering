@@ -16,31 +16,31 @@
 
 ### usersテーブル
 
-| Field         | Type        | Null | Key | Default             | Extra |
-|:--------------|:------------|:-----|-----|:--------------------|:------|
-| id            | char(8)     | NO   | PRI | NULL                |       |
-| name          | varchar(64) | YES  |     | NULL                |       |
-| password      | varchar(16) | NO   |     | pass                |       |
-| mail          | varchar(64) | NO   |     | example@mail.com    |       |
-| phone_number  | int(11)     | YES  |     | NULL                |       |
-| address       | varchar(64) | YES  |     | NULL                |       |
-| registered_at | timestamp   | NO   |     | 0000-00-00 00:00:00 |       |
-| deleted_at    | timestamp   | NO   |     | 0000-00-00 00:00:00 |       |
-| created_at    | timestamp   | NO   |     | CURRENT_TIMESTAMP   |       |
-| updated_at    | timestamp   | NO   |     | 0000-00-00 00:00:00 |       |
+| Field         | Type             | Null | Key | Default             | Extra |
+|:--------------|:-----------------|:-----|-----|:--------------------|:------|
+| id            | char(8)          | NO   | PRI | NULL                |       |
+| name          | varchar(64)      | YES  |     | NULL                |       |
+| password      | varchar(16)      | NO   |     | pass                |       |
+| mail          | varchar(64)      | NO   |     | example@mail.com    |       |
+| phone_number  | int(11) unsigned | YES  |     | NULL                |       |
+| address       | varchar(64)      | YES  |     | NULL                |       |
+| registered_at | timestamp        | NO   |     | 0000-00-00 00:00:00 |       |
+| deleted_at    | timestamp        | NO   |     | 0000-00-00 00:00:00 |       |
+| created_at    | timestamp        | NO   |     | CURRENT_TIMESTAMP   |       |
+| updated_at    | timestamp        | NO   |     | 0000-00-00 00:00:00 |       |
 
 ### contractsテーブル
 
-| Field      | Type        | Null | Key | Default             | Extra |
-|:-----------|:------------|:-----|:----|:--------------------|:------|
-| id         | char(8)     | NO   | PRI | NULL                |       |
-| user_id    | char(8)     | NO   | MUL | NULL                |       |
-| partner    | varchar(64) | YES  |     | NULL                |       |
-| ip_address | int(11)     | YES  |     | 0                   |       |
-| started_at | timestamp   | NO   |     | 0000-00-00 00:00:00 |       |
-| closed_at  | timestamp   | NO   |     | 0000-00-00 00:00:00 |       |
-| created_at | timestamp   | NO   |     | CURRENT_TIMESTAMP   |       |
-| updated_at | timestamp   | NO   |     | 0000-00-00 00:00:00 |       |
+| Field      | Type             | Null | Key | Default             | Extra |
+|:-----------|:-----------------|:-----|:----|:--------------------|:------|
+| id         | char(8)          | NO   | PRI | NULL                |       |
+| user_id    | char(8)          | NO   | MUL | NULL                |       |
+| partner    | varchar(64)      | YES  |     | NULL                |       |
+| ip_address | int(11) unsigned | YES  |     | 0                   |       |
+| started_at | timestamp        | NO   |     | 0000-00-00 00:00:00 |       |
+| closed_at  | timestamp        | NO   |     | 0000-00-00 00:00:00 |       |
+| created_at | timestamp        | NO   |     | CURRENT_TIMESTAMP   |       |
+| updated_at | timestamp        | NO   |     | 0000-00-00 00:00:00 |       |
 
 ### configurationsテーブル
 
