@@ -1,0 +1,38 @@
+div.pGap p{
+    margin: 0.1em 0px;
+}
+
+li.q {
+    list-style-type: square;
+    color: blue;
+    font-size: 25px;
+    font-weight: bold;
+    margin: 1em 0px;
+}
+
+li.a {
+    margin: 1em 0px;
+    font-size: 20px;
+    font-weight: bold;
+    margin: 1em 0px;
+}
+
+div.right {
+    text-align: right;
+}
+
+.tex{
+    color: black;
+}
+
+ul{
+    margin: 2em 0px;
+    border: 2px skyblue dashed;
+    background: #f3fbff;
+}
+
+.title{
+    font-size: 30px;
+    font-weight: bold;
+    text-align: center;
+}
