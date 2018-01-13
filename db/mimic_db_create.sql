@@ -8,8 +8,7 @@ DROP TABLE IF EXISTS `users`;
 
 CREATE TABLE `users` (
   `id` char(8)
-    NOT NULL
-    PRIMARY KEY,
+    NOT NULL,
   `name` varchar(64)
     DEFAULT NULL,
   `password` varchar(16)
@@ -18,7 +17,7 @@ CREATE TABLE `users` (
   `mail` varchar(64)
     NOT NULL
     DEFAULT 'example@mail.com',
-  `phone_number` int
+  `phone_number` varchar(16)
     DEFAULT NULL,
   `address` varchar(64)
     DEFAULT NULL,
@@ -33,20 +32,19 @@ CREATE TABLE `users` (
     DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp
     NOT NULL
-    DEFAULT 0
+    DEFAULT 0,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB CHARSET=utf8;
 
 CREATE TABLE `contracts` (
   `id` char(8)
-    NOT NULL
-    PRIMARY KEY,
+    NOT NULL,
   `user_id` char(8)
-    NOT NULL
-    REFERENCES users(id),
+    NOT NULL,
   `partner` varchar(64)
     DEFAULT NULL,
-  `ip_address` int
-    DEFAULT 0,
+  `ip_address` int unsigned
+    DEFAULT NULL,
   `started_at` timestamp
     NOT NULL
     DEFAULT 0,
@@ -58,15 +56,16 @@ CREATE TABLE `contracts` (
     DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp
     NOT NULL
-    DEFAULT 0
+    DEFAULT 0,
+  PRIMARY KEY (`id`),
+  FOREIGN KEY (`user_id`)
+    REFERENCES `users` (`id`)
 ) ENGINE=InnoDB CHARSET=utf8;
 
 CREATE TABLE `configurations` (
   `id` char(8)
-    NOT NULL
-    PRIMARY KEY,
-  `contract_id` char(8)
-    REFERENCES contracts(id),
+    NOT NULL,
+  `contract_id` char(8),
   `morning_enabled` enum('on', 'off')
     NOT NULL
     DEFAULT 'off',
@@ -118,25 +117,28 @@ CREATE TABLE `configurations` (
     DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp
     NOT NULL
-    DEFAULT 0
+    DEFAULT 0,
+  PRIMARY KEY (`id`),
+  FOREIGN KEY (`contract_id`)
+    REFERENCES `contracts` (`id`)
 ) ENGINE=InnoDB CHARSET=utf8;
 
 create table `histories` (
   `contract_id` char(8)
-    NOT NULL
-    REFERENCES contracts(id),
+    NOT NULL,
   `acted_at` timestamp
     NOT NULL
     DEFAULT CURRENT_TIMESTAMP,
   `state` enum('opened', 'no_response', 'go_out', 'return_home')
     NOT NULL
-    DEFAULT 'opened'
+    DEFAULT 'opened',
+  FOREIGN KEY (`contract_id`)
+    REFERENCES `contracts` (`id`)
 ) ENGINE=InnoDB CHARSET=utf8;
 
 CREATE TABLE `administrators` (
   `id` char(8)
-    NOT NULL
-    PRIMARY KEY,
+    NOT NULL,
   `name` varchar(64)
     DEFAULT NULL,
   `password` varchar(64)
@@ -147,5 +149,6 @@ CREATE TABLE `administrators` (
     DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp
     NOT NULL
-    DEFAULT 0
+    DEFAULT 0,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB CHARSET=utf8;
