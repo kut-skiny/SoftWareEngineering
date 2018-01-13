@@ -14,7 +14,7 @@ CREATE TABLE users (
   phone_number int,
   address varchar(64),
   registered_at timestamp,
-  deleted_at timestamp,
+  deleted_at timestamp default 0,
   created_at timestamp NOT NULL,
   updated_at timestamp,
   PRIMARY KEY (id)
@@ -69,4 +69,3 @@ CREATE TABLE administrators (
   updated_at timestamp,
   PRIMARY KEY (id)
 ) CHARSET=utf8;
-
