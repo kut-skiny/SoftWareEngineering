@@ -29,6 +29,18 @@
     margin: 0 auto;
     width: 150px; height: 40px;
   }
+  input#ip1 {
+    width: 33px; height: 10px;
+  }
+  input#ip2 {
+    width: 33px; height: 10px;
+  }
+  input#ip3 {
+    width: 33px; height: 10px;
+  }
+  input#ip4 {
+    width: 33px; height: 10px;
+  }
   ul.pagetop {
     display: inline;
   }
@@ -51,7 +63,10 @@
     <p><li><label for="4">契約者パスワード </label><input id="pass" type="text"/></li></p>
     <p><li><label for="5">契約者メールアドレス </label><input id="mail" type="text"/></li></p>
     <p><li><label for="6">契約者電話番号 </label><input id="phone" type="text"/></li></p>
-    <p><li><label for="7">ラズベリーパイIPアドレス </label><input id="ip" type="text"/></li></p>
+    <p><li><label for="7">ラズベリーパイIPアドレス </label><input id="ip1" type="text"/>.
+                                                     <input id="ip2" type="text"/>.
+                                                     <input id="ip3" type="text"/>.
+                                                     <input id="ip4" type="text"/></li></p>
     <li><input id="button1" type="button" value="登録"/></li>
     </ul>
   </form>
@@ -63,9 +78,40 @@ $(function() {
     window.location.href = 'http://kihara-virtualbox/adminMyPage.html';
   });
   $('#button1').click(function() {
+    var err = '0';
+    if($('#userid').val().length == 0 || $('#userid').val().length > 20){
+      err = '1';
+    }
+    if($('#name1').val().length == 0 || $('#name1').val().length > 20){
+      err = '1';
+    }
+    if($('#name2').val().length == 0 || $('#name2').val().length > 20){
+      err = '1';
+    }
+    if($('#pass').val().length == 0 || $('#pass').val().length > 20){
+      err = '1';
+    }
+    if($('#mail').val().length < 3 || $('#mail').val().length > 30){
+      err = '1';
+    }
+    var phone =  $('#phone').val().replace( /-/g , "" );
+    if(isNaN(phone) || phone.length < 10 || phone.length > 11){
+      err = '1';
+    }
+    var ip = $('#ip1').val()+$('#ip2').val()+$('#ip3').val()+$('#ip4').val();
+    if(isNaN(ip) || ip.length < 4 || ip.length > 12){
+      err = '1';
+    }
+    if(err == '1'){
+      window.alert('入力情報が間違っています');
+      return;
+    }
+
+
     $.post('sample.php',
       {
-        id: $('#userid').val(), name1: $('#name1').val(), name2: $('#name2').val()
+        id: $('#userid').val(), name1: $('#name1').val(), name2: $('#name2').val(), pass: $('#pass').val(),
+        mail: $('#mail').val(), phone: phone, ip: ip
       }
     )
     .done(function(data) {
@@ -79,5 +125,17 @@ $(function() {
 });
 </script>
 
+<script type="text/javascript">
+/*function check() {
+  var s = document.createElement('script');
+  a = document.form1.a.value;
+  b = document.form1.b.value;
+  param = "?a="+a+"&b="+b
+  s.src = '/cgi-bin/jsonp.py'+param;
+  document.body.appendChild(s);
+  return false;
+}*/
+
+</script>
 </body>
 </html>
