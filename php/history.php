@@ -6,24 +6,27 @@ if (!isset($_SESSION["id"])) {
 }
 
 
-$dsn  = 'mysql:dbname=soft;host=localhost';
+$dsn  = 'mysql:dbname=mimic;host=localhost';
 $host = 'localhost';
 $username = 'root';
 $password = 'uz@1!Hm!';
-$dbname = 'soft';
+$dbname = 'mimic';
 
 #idあってるか確認する（修正）
 $id = $_SESSION["id"];
 
 try{
     $dbh = new PDO($dsn,$username,$password);
-    #$dbID = "select id from users";
-    #$dbPass = ""select password from users where;
-    $db = $dbh->prepare("select acted_at, state from histories where contract_id = ? ");
-    $db->bindValue(1, $id, PDO::PARAM_STR);
+    #ログイン時に入力したIDをもとに、契約IDを検索。その後、契約IDと一致する薬箱の情報を取り出す。
+    $db = $dbh->prepare("select histories.acted_at, histories.state from contracts, histories where contracts.user_id = ? and histories.contract_id = contracts.id");
+    $db->bindValue(1, $id);
     $db->execute();
-    #$result = $db->fetch(PDO::FETCH_ASSOC);
     $result = $db->fetchAll(PDO::FETCH_ASSOC);
+
+    #$db = $dbh->prepare("select acted_at, state from histories where contract_id = ? ");
+    #$db->bindValue(1, $id, PDO::PARAM_STR);
+    #$db->execute();
+    #$result = $db->fetchAll(PDO::FETCH_ASSOC);
     #$dbActed_at = $row['acted_at'];
     #$dbState = $row['state'];
     #$dbID->bindValue(2, $pass, PDO::PARAM_STR);
