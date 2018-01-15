@@ -6,35 +6,19 @@ DROP TABLE IF EXISTS `contracts`;
 DROP TABLE IF EXISTS `users`;
 --
 
-CREATE TABLE `users` (
-  `id` char(8)
-    NOT NULL,
-  `name` varchar(64)
-    DEFAULT NULL,
-  `password` varchar(16)
-    NOT NULL
-    DEFAULT 'pass',
-  `mail` varchar(64)
-    NOT NULL
-    DEFAULT 'example@mail.com',
-  `phone_number` varchar(16)
-    DEFAULT NULL,
-  `address` varchar(64)
-    DEFAULT NULL,
-  `registered_at` timestamp
-    NOT NULL
-    DEFAULT 0,
-  `deleted_at` timestamp
-    NOT NULL
-    DEFAULT 0,
-  `created_at` timestamp
-    NOT NULL
-    DEFAULT CURRENT_TIMESTAMP,
-  `updated_at` timestamp
-    NOT NULL
-    DEFAULT 0,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB CHARSET=utf8;
+CREATE TABLE users (
+  id char(8) NOT NULL,
+  name varchar(64),
+  password varchar(16),
+  mail varchar(64) NOT NULL,
+  phone_number int,
+  address varchar(64),
+  registered_at timestamp,
+  deleted_at timestamp default 0,
+  created_at timestamp NOT NULL,
+  updated_at timestamp,
+  PRIMARY KEY (id)
+) CHARSET=utf8;
 
 CREATE TABLE `contracts` (
   `id` char(8)
@@ -123,32 +107,18 @@ CREATE TABLE `configurations` (
     REFERENCES `contracts` (`id`)
 ) ENGINE=InnoDB CHARSET=utf8;
 
-create table `histories` (
-  `contract_id` char(8)
-    NOT NULL,
-  `acted_at` timestamp
-    NOT NULL
-    DEFAULT CURRENT_TIMESTAMP,
-  `state` enum('opened', 'no_response', 'go_out', 'return_home')
-    NOT NULL
-    DEFAULT 'opened',
-  FOREIGN KEY (`contract_id`)
-    REFERENCES `contracts` (`id`)
-) ENGINE=InnoDB CHARSET=utf8;
+create table histories (
+  contract_id char(8) NOT NULL,
+  acted_at timestamp NOT NULL,
+  state enum('opend', 'no_response', 'go_out', 'return_home') NOT NULL,
+  FOREIGN KEY (contract_id) REFERENCES contracts(id)
+) CHARSET=utf8;
 
-CREATE TABLE `administrators` (
-  `id` char(8)
-    NOT NULL,
-  `name` varchar(64)
-    DEFAULT NULL,
-  `password` varchar(64)
-    NOT NULL
-    DEFAULT 'pass',
-  `created_at` timestamp
-    NOT NULL
-    DEFAULT CURRENT_TIMESTAMP,
-  `updated_at` timestamp
-    NOT NULL
-    DEFAULT 0,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB CHARSET=utf8;
+CREATE TABLE administrators (
+  id char(8) NOT NULL,
+  name varchar(64) NOT NULL,
+  password varchar(64) NOT NULL,
+  created_at timestamp NOT NULL,
+  updated_at timestamp,
+  PRIMARY KEY (id)
+) CHARSET=utf8;

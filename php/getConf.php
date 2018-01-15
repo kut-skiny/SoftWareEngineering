@@ -7,7 +7,7 @@ if (!isset($_SESSION["id"])) {
 }
 
 
-$dsn  = 'mysql:dbname=soft;host=localhost';
+$dsn  = 'mysql:dbname=mimic;host=localhost';
 $host = 'localhost';
 $username = 'root';
 $password = 'uz@1!Hm!';
@@ -19,29 +19,41 @@ $id = $_SESSION["id"];
 
 try{
     $dbh = new PDO($dsn,$username,$password);
-    #contract_idで条件検索する
-    $db = $dbh->prepare("select * from configurations where id = ? ");
+    #薬箱の設定情報を取得する
+    $db = $dbh->prepare("select configurations.morning_enabled, configurations.morning_time, configurations.noon_enabled, configurations.noon_time, configurations.evening_enabled, configurations.evening_time, configurations.night_enabled, configurations.night_time, configurations.mail,
+    configurations.mail_after_blank_time_enabled, configurations.blank_time_for_mail, configurations.mail_once_a_day_enabled, configurations.line, configurations.line_after_blank_time_enabled, configurations.blank_time_for_line, configurations.line_once_a_day_enabled, configurations.created_at, configurations.updated_at
+    from configurations, contracts where contracts.user_id = ? and configurations.contract_id = contracts.id");
     $db->bindValue(1, $id, PDO::PARAM_STR);
     $db->execute();
     $result = $db->fetch(PDO::FETCH_ASSOC);
-    #配列の中身表示
-    #print_r($result);
-    $dbMorningHour = (int)substr($result['morning_time'], 0, 2);
-    $dbMorningMinute = (int)substr($result['morning_time'], 3, 3);
+
+    $dbMorningEnabled = $result['morning_enabled'];
+    #アラーム時刻は 00:00:00 という形でDBに保存されている
+    #substr()で時、分にあたる部分を抜き出す
+    $dbMorningHour = substr($result['morning_time'], 0, 2);
+    $dbMorningMinute = substr($result['morning_time'], 3, 4);
+
+    $dbNoonEnabled = $result['noon_enabled'];
     $dbNoonHour = substr($result['noon_time'], 0, 2);
     $dbNoonMinute = substr($result['noon_time'], 3, 3);
+
+    $dbEveningEnabled = $result['evening_enabled'];
     $dbEveningHour = substr($result['evening_time'], 0, 2);
     $dbEveningMinute = substr($result['evening_time'], 3, 3);
+
+    $dbNightEnabled = $result['night_enabled'];
     $dbNightHour = substr($result['night_time'], 0, 2);
     $dbNightMinute = substr($result['night_time'], 3, 3);
+
     $dbMail = $result['mail'];
-    $dbMailBlank = $result['mail_after_blank_time'];
+    $dbMailBlank = $result['mail_after_blank_time_enabled'];
     $dbMailBlankTime = $result['blank_time_for_mail'];
-    $dbMailOnce = $result['mail_once_a_day'];
+    $dbMailOnce = $result['mail_once_a_day_enabled'];
+
     $dbLine = $result['line'];
-    $dbLineBlank = $result['line_after_blank_time'];
+    $dbLineBlank = $result['line_after_blank_time_enabled'];
     $dbLineBlankTime = $result['blank_time_for_line'];
-    $dbLineOnce = $result['line_once_a_day'];
+    $dbLineOnce = $result['line_once_a_day_enabled'];
     #dbCreate = $result['created_at'];
     #dbCreate = $result['updated_at'];
     $dbh = null;
@@ -60,6 +72,11 @@ try{
 <body>
     <h1>使用設定</h1>
     <form method = "post" action = "setConf.php">
+        <!--朝のアラームを利用するかのチェックボックス
+            if文でDBの設定情報(onまたはoff)を判定し、phpで出力する。htmlはその出力をプログラムコードとして認識する。-->
+        <input type = "hidden" name = "morningEnabled" value = "off"  <?php if($dbMorningEnabled === "off"){echo "checked";}; ?>>
+        <input type = "checkbox" name = "morningEnabled" value = "on" <?php if($dbMorningEnabled === "on"){echo "checked";}; ?>>
+        <!--朝のアラーム(hour)-->
         朝:<select name = "morningHour">
             <option <?php if($dbMorningHour == 0) {echo 'selected';}?>>0</option>
             <option <?php if($dbMorningHour == 1) {echo 'selected';}?>>1</option>
@@ -71,6 +88,7 @@ try{
             <option <?php if($dbMorningHour == 7) {echo 'selected';}?>>7</option>
             <option <?php if($dbMorningHour == 8) {echo 'selected';}?>>8</option>
         </select>
+        <!--朝のアラーム(minute)-->
         時
         <select name = "morningMinute">
             <option value = "0" <?php if($dbMorningMinute == 0) {echo 'selected';}?>>0</option>
@@ -82,6 +100,9 @@ try{
         </select>
         分
         <br>
+
+        <input type = "hidden" name = "noonEnabled" value = "off"  <?php if($dbNoonEnabled === "off"){echo "checked";}; ?>>
+        <input type = "checkbox" name = "noonEnabled" value = "on" <?php if($dbNoonEnabled === "on"){echo "checked";}; ?>>
         昼:<select name = "noonHour">
             <option <?php if($dbNoonHour == 9) {echo 'selected';}?>>9</option>
             <option <?php if($dbNoonHour == 10) {echo 'selected';}?>>10</option>
@@ -101,6 +122,9 @@ try{
         </select>
         分
         <br>
+
+        <input type = "hidden" name = "eveningEnabled" value = "off"  <?php if($dbEveningEnabled === "off"){echo "checked";}; ?>>
+        <input type = "checkbox" name = "eveningEnabled" value = "on" <?php if($dbEveningEnabled === "on"){echo "checked";}; ?>>
         夕:<select name = "eveningHour">
             <option <?php if($dbEveningHour == 15) {echo 'selected';}?>>15</option>
             <option <?php if($dbEveningHour == 16) {echo 'selected';}?>>16</option>
@@ -117,6 +141,9 @@ try{
         </select>
         分
         <br>
+
+        <input type = "hidden" name = "nightEnabled" value = "off"  <?php if($dbNightEnabled === "off"){echo "checked";}; ?>>
+        <input type = "checkbox" name = "nightEnabled" value = "on" <?php if($dbNightEnabled === "on"){echo "checked";}; ?>>
         夜:<select name = "nightHour">
             <option <?php if($dbNightHour == 18) {echo 'selected';}?>>18</option>
             <option <?php if($dbNightHour == 19) {echo 'selected';}?>>19</option>
@@ -137,8 +164,6 @@ try{
         分
         <br>
         <h3>メール通知</h3>
-        on:off<input type = "text" name = "mailAlarm" value = "<?php echo $dbMailBlank . "テーブルのどれ"; ?>" >
-        <br>
 
         <input type = "hidden" name = "mailOnce" value = "off"  <?php if($dbMailOnce === "off"){echo "checked";}; ?>>
         <input type = "checkbox" name = "mailOnce" value = "on" <?php if($dbMailOnce === "on"){echo "checked";}; ?>>
@@ -159,8 +184,6 @@ try{
         <br>
 
         <h3>LINE通知</h3>
-        on:off<input type = "text" name = "lineAlarm" value = "<?php echo $dbLineBlank . "テーブルのどれ"; ?>" >
-        <br>
 
         <input type = "hidden" name = "lineOnce" value = "off"  <?php if($dbLineOnce === "off"){echo "checked";}; ?>>
         <input type = "checkbox" name = "lineOnce" value = "on" <?php if($dbLineOnce === "on"){echo "checked";}; ?>>

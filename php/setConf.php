@@ -5,31 +5,42 @@ if (!isset($_SESSION["id"])) {
     exit;
 }
 
-$dsn  = 'mysql:dbname=soft;host=localhost';
+$dsn  = 'mysql:dbname=mimic;host=localhost';
 $host = 'localhost';
 $username = 'root';
 $password = 'uz@1!Hm!';
 $dbname = 'soft';
 
-#idあってるか確認する（修正）
 $id = $_SESSION["id"];
 
+#getConf.phpから受け取った薬箱の設定情報を変数に格納
+$dbMorningEnabled = $_POST['morningEnabled'];
 $morningHour = $_POST['morningHour'];
 $morningMinute = $_POST['morningMinute'];
+
+$dbNoonEnabled = $_POST['noonEnabled'];
 $noonHour = $_POST['noonHour'];
 $noonMinute = $_POST['noonMinute'];
+
+$dbEveningEnabled = $_POST['eveningEnabled'];
 $eveningHour = $_POST['eveningHour'];
 $eveningMinute = $_POST['eveningMinute'];
+
+$dbNightEnabled = $_POST['nightEnabled'];
 $nightHour = $_POST['nightHour'];
 $nightMinute = $_POST['nightMinute'];
+
 $dbMail = $_POST['mail'];
 $dbMailBlank = $_POST['mailBlank'];
 $mailBlankTime = $_POST['mailBlankTime'];
 $dbMailOnce = $_POST['mailOnce'];
+
 $dbLine = $_POST['line'];
 $dbLineBlank = $_POST['lineBlank'];
 $lineBlankTime = $_POST['lineBlankTime'];
 $dbLineOnce = $_POST['lineOnce'];
+
+#SQL文用に書式を整える
 $dbMorning = $morningHour . ":" . $morningMinute . ":" . "0" ;
 $dbNoon = $noonHour . ":" . $noonMinute . ":" ."0";
 $dbEvening = $eveningHour . ":" . $eveningMinute. ":" . "0";
@@ -39,51 +50,33 @@ $dbLineBlankTime = $lineBlankTime . ":" . "0" . ":" . "0";
 
 try{
     $dbh = new PDO($dsn,$username,$password);
-    $stmt = $dbh->prepare("select * from configurations where id = ? ");
+    #ユーザIDと一致する契約IDを取得する
+    $stmt = $dbh->prepare("select id from contracts where user_id = ? ");
     $stmt->bindValue(1, $id, PDO::PARAM_STR);
     $stmt->execute();
     $result = $stmt->fetch(PDO::FETCH_ASSOC);
-    $contract_id = $result['contract_id'];
-    echo $dbMorning;
-    echo "<br>";
-    echo $dbNoon;
-    echo "<br>";
-    echo $dbEvening;
-    echo "<br>";
-    echo $dbNight;
-    echo "<br>";
-    echo $dbMail;
-    echo "<br>";
-    echo $dbMailBlank;
-    echo "<br>";
-    echo $dbMailBlankTime;
-    echo "<br>";
-    echo $dbMailOnce;
-    echo "<br>";
-    echo $dbLine;
-    echo "<br>";
-    echo $dbLineBlank;
-    echo "<br>";
-    echo $dbLineBlankTime;
-    echo "<br>";
-    echo $dbLineOnce;
-    $stmt = $dbh->prepare("update configurations set morning_time = ?, noon_time = ?, evening_time = ?, night_time = ?, mail = ?, mail_after_blank_time = ?, blank_time_for_mail = ?, mail_once_a_day = ?, line = ?, line_after_blank_time = ?, blank_time_for_line = ?, line_once_a_day = ? where id = ?");
-    $stmt->bindValue(1, $dbMorning);
-    $stmt->bindValue(2, $dbNoon);
-    $stmt->bindValue(3, $dbEvening);
-    $stmt->bindValue(4, $dbNight);
-    $stmt->bindValue(5, $dbMail);
-    $stmt->bindValue(6, $dbMailBlank);
-    $stmt->bindValue(7, $dbMailBlankTime);
-    $stmt->bindValue(8, $dbMailOnce);
-    $stmt->bindValue(9, $dbLine);
-    $stmt->bindValue(10, $dbLineBlank);
-    $stmt->bindValue(11, $dbLineBlankTime);
-    $stmt->bindValue(12, $dbLineOnce);
-    $stmt->bindValue(13, $id);
+    $contract_id = $result['id'];
+    #薬箱の設定情報を更新する
+    $stmt = $dbh->prepare("update configurations set morning_enabled = ?, morning_time = ?, noon_enabled = ?, noon_time = ?, evening_enabled = ?, evening_time = ?, night_enabled = ?, night_time = ?,
+    mail = ?, mail_after_blank_time_enabled = ?, blank_time_for_mail = ?, mail_once_a_day_enabled = ?, line = ?, line_after_blank_time_enabled= ?, blank_time_for_line = ?, line_once_a_day_enabled = ? where contract_id = ?");
+    $stmt->bindValue(2, $dbMorning);
+    $stmt->bindValue(3, $dbNoonEnabled);
+    $stmt->bindValue(4, $dbNoon);
+    $stmt->bindValue(5, $dbEveningEnabled);
+    $stmt->bindValue(6, $dbEvening);
+    $stmt->bindValue(7, $dbNightEnabled);
+    $stmt->bindValue(8, $dbNight);
+    $stmt->bindValue(9, $dbMail);
+    $stmt->bindValue(10, $dbMailBlank);
+    $stmt->bindValue(11, $dbMailBlankTime);
+    $stmt->bindValue(12, $dbMailOnce);
+    $stmt->bindValue(13, $dbLine);
+    $stmt->bindValue(14, $dbLineBlank);
+    $stmt->bindValue(15, $dbLineBlankTime);
+    $stmt->bindValue(16, $dbLineOnce);
+    $stmt->bindValue(17, $contract_id);
     $stmt->execute();
-    #dbCreate = $result['created_at'];
-    #dbUpdate = $result['updated_at'];
+
     $dbh = null;
    } catch (PDOException $e) {
        exit("データベースに接続できませんでした。<br>" . htmlspecialchars($e->getMessage()) . "<br>");
@@ -99,6 +92,6 @@ try{
     <title></title>
 </head>
 <body>
-
+<?php echo $contract_id; ?>
 </body>
 </html>
