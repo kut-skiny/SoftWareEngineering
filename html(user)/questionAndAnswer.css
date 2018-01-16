@@ -1,9 +1,13 @@
-div.pGap p{
+div.right p{
     margin: 0.1em 0px;
+    text-align: right;
+    font-weight: bold;
+    font-size: 20px;
 }
 
 li.q {
-    list-style-type: square;
+    list-style-type: none;
+    list-style-position: outside;
     color: blue;
     font-size: 25px;
     font-weight: bold;
@@ -11,18 +15,11 @@ li.q {
 }
 
 li.a {
+    list-style-type: none;
     margin: 1em 0px;
     font-size: 20px;
     font-weight: bold;
     margin: 1em 0px;
-}
-
-div.right {
-    text-align: right;
-}
-
-.tex{
-    color: black;
 }
 
 ul{
@@ -31,8 +28,22 @@ ul{
     background: #f3fbff;
 }
 
-.title{
-    font-size: 30px;
+span.question{
+    border: 2px solid blue;
+    padding: 2px;
+    margin: 5px;
+    background: blue;
+    font-size: 28px;
     font-weight: bold;
-    text-align: center;
+    color: white;
+}
+
+span.answer{
+    border: 2px solid red;
+    padding: 2px;
+    margin: 5px;
+    background: red;
+    font-size: 28px;
+    font-weight: bold;
+    color: white;
 }
