@@ -59,6 +59,7 @@ try{
     #薬箱の設定情報を更新する
     $stmt = $dbh->prepare("update configurations set morning_enabled = ?, morning_time = ?, noon_enabled = ?, noon_time = ?, evening_enabled = ?, evening_time = ?, night_enabled = ?, night_time = ?,
     mail = ?, mail_after_blank_time_enabled = ?, blank_time_for_mail = ?, mail_once_a_day_enabled = ?, line = ?, line_after_blank_time_enabled= ?, blank_time_for_line = ?, line_once_a_day_enabled = ? where contract_id = ?");
+    $stmt->bindValue(1, $dbMorningEnabled);
     $stmt->bindValue(2, $dbMorning);
     $stmt->bindValue(3, $dbNoonEnabled);
     $stmt->bindValue(4, $dbNoon);
