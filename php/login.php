@@ -1,5 +1,5 @@
 <?php
-$dsn  = 'mysql:dbname=soft;host=localhost';
+$dsn  = 'mysql:dbname=mimic;host=localhost';
 $host = 'localhost';
 $username = 'root';
 $password = 'uz@1!Hm!';
