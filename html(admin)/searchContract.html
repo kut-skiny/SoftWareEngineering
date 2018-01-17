@@ -2,7 +2,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title>契約検索</title>
-<script type="text/javascript" src="/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="./jquery-3.2.1.min.js"></script>
 <style type="text/css">
 ul li {
   list-style:none;
@@ -31,7 +31,6 @@ input#button1 {
 <body>
 <h1 id="top1"><left>　　ミミック　　</left></h1>
 <h1><center>契約検索</center></h1>
-
 <form>
   <div class="button">
   <ul>
@@ -49,31 +48,26 @@ input#button1 {
 <script type="text/javascript">
 $(function() {
   $(top1).click(function() {
-    window.location.href = 'http://kihara-virtualbox/adminMyPage.html';
+    window.location.href = './adminMyPage.html';
   });
   $('#button1').click(function() {
-    $.post('sample.php',
+    $.post("sample.php",
       {
-        id: $('#userid').val(), name1: $('#name1').val(), name2: $('#name2').val()
+          id : $('#userid').val(), name1: $('#name1').val(), name2: $('#name2').val()
       }
-    )
+  )
+
     .done(function(data) {
-      var datalist = {"users":[
-        {
-          data1: "hoge1",
-          data2: "hoge2",
-          data3: "hoge3"
-        },
-        {
-          data1: "hoge4",
-          data2: "hoge5",
-          data3: "hoge6"
-        }
-      ]}
-
-      localStorage.setItem("datalist", JSON.stringify(datalist));
-
-      window.location.href = 'http://kihara-virtualbox/resultSearch.html';
+        data_ary = JSON.parse(data);
+        var datalist = {"users":[
+            {
+                data1: data_ary[0],
+                data2: data_ary[1],
+                data3: data_ary[2]
+            }
+        ]}
+        localStorage.setItem("datalist", JSON.stringify(datalist));
+        window.location.href = './resultSearch.html';
     })
     .fail(function() {
       window.alert('正しい結果を得られませんでした。');
