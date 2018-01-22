@@ -57,8 +57,11 @@ try{
     $result = $stmt->fetch(PDO::FETCH_ASSOC);
     $contract_id = $result['id'];
     #薬箱の設定情報を更新する
+    //タイムゾーンを設定
+    date_default_timezone_set('Asia/Tokyo');
+    $now = date('Y-m-d H:i:s');
     $stmt = $dbh->prepare("update configurations set morning_enabled = ?, morning_time = ?, noon_enabled = ?, noon_time = ?, evening_enabled = ?, evening_time = ?, night_enabled = ?, night_time = ?,
-    mail = ?, mail_after_blank_time_enabled = ?, blank_time_for_mail = ?, mail_once_a_day_enabled = ?, line = ?, line_after_blank_time_enabled= ?, blank_time_for_line = ?, line_once_a_day_enabled = ? where contract_id = ?");
+    mail = ?, mail_after_blank_time_enabled = ?, blank_time_for_mail = ?, mail_once_a_day_enabled = ?, line = ?, line_after_blank_time_enabled= ?, blank_time_for_line = ?, line_once_a_day_enabled = ?, updated_at = ? where contract_id = ?");
     $stmt->bindValue(1, $dbMorningEnabled);
     $stmt->bindValue(2, $dbMorning);
     $stmt->bindValue(3, $dbNoonEnabled);
@@ -75,7 +78,8 @@ try{
     $stmt->bindValue(14, $dbLineBlank);
     $stmt->bindValue(15, $dbLineBlankTime);
     $stmt->bindValue(16, $dbLineOnce);
-    $stmt->bindValue(17, $contract_id);
+    $stmt->bindValue(17, $now);
+    $stmt->bindValue(18, $contract_id);
     $stmt->execute();
 
     $dbh = null;
