@@ -1,0 +1,39 @@
+div.pGap p{
+    margin: 0.1em 0px;
+}
+
+ol{
+    position: relative;
+    margin: 0;
+    padding: 0;
+}
+
+ol li {
+    list-style: none;
+    list-style-position: outside;
+    font-size: 25px;
+    font-weight: bold;
+    margin: 1em 0px;
+    padding-left: 1.25em
+}
+
+ol li span{
+    margin: 0;
+    padding: 10px;
+}
+
+
+div.right {
+    text-align: right;
+}
+
+.tex{
+    color: black;
+}
+
+div.tit{
+    margin: 2em 0px;
+    margin-under: 10px;
+    padding: 5px;
+    border: 1px blue dashed;
+}

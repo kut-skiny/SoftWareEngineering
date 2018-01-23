@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>契約検索</title>
+<script type="text/javascript" src="./jquery-3.2.1.min.js"></script>
+<style type="text/css">
+ul li {
+  list-style:none;
+  width: 50%;
+  margin: 0 auto;
+  max-width: 500px;
+}
+label {
+  margin-right: 10px;
+  width: 40%;
+  float: left;
+  text-align: right;
+}
+ul {
+  width: 50%;
+  margin: 0 auto;
+}
+input#button1 {
+  display: block;
+  margin: 0 auto;
+  width: 150px; height: 40px;
+}
+</style>
+
+</head>
+<body>
+<h1 id="top1"><left>　　ミミック　　</left></h1>
+<h1><center>契約検索</center></h1>
+
+<form>
+  <div class="button">
+  <ul>
+  <p><li><label for="name">契約者ID </label><input id="userid" type="text"/></li></p>
+  <p><li><label for="name">契約者名 </label><input id="name1" type="text"/></li></p>
+  <p><li><label for="name">薬箱利用者 </label><input id="name2" type="text"/></li></p>
+  <p><li><label for="name">契約者メールアドレス </label><input id="mail" type="text"/></li></p>
+  <p><li><label for="name">契約者電話番号 </label><input id="phone" type="text"/></li></p>
+  <p><li><label for="name">ラズベリーパイIPアドレス </label><input id="ip" type="text"/></li></p>
+  <li><input id="button1" type="button" value="検索" /></li>
+  </ul>
+  </div>
+</form>
+
+<script type="text/javascript">
+$(function() {
+  $(top1).click(function() {
+    window.location.href = 'http://kihara-virtualbox/adminMyPage.html';
+  });
+  $('#button1').click(function() {
+    $.post('sample.php',
+      {
+        id: $('#userid').val(), name1: $('#name1').val(), name2: $('#name2').val()
+      }
+    )
+    .done(function(data) {
+      var datalist = {"users":[
+        {
+          data1: "hoge1",
+          data2: "hoge2",
+          data3: "hoge3"
+        },
+        {
+          data1: "hoge4",
+          data2: "hoge5",
+          data3: "hoge6"
+        }
+      ]}
+      localStorage.setItem("datalist", JSON.stringify(datalist));
+      window.location.href = './resultSearch.html';
+    })
+    .fail(function() {
+      window.alert('正しい結果を得られませんでした。');
+    });
+  });
+});
+</script>
+</body>
+</html>

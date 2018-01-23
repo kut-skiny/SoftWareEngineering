@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>株式会社 skiny</title>
+    <script type="text/javascript" src="./jquery-3.2.1.min.js"></script>
+    <link rel="stylesheet" type"text/css" href="useManagement.css">
+    <META charset="UTF-8" name="viewport" content="width=device-width">
+  </head>
+  <body>
+
+    <!-- 題名 -->
+    <div class="right"><h3>
+	<div class="pGap" id="top1">
+	  <p>安否確認システム</p>
+	  <p>ミミック</p>
+	</div>
+    </h3></div>
+    <center><h1>使い方<h1></center>
+    <span style="line-height: 300%"><br></span>
+
+    <!-- 使い方　開始-->
+    <div class="tit">
+      <center><h2>「履歴」 の見方</h2></center>
+      <p>
+	<img src="historyPicture.png" align="left" width="400">
+	<br>
+	<ol>
+	  <li><span>&#9312;</span>閲覧日は橙色で表示されます。</li>
+	  <li><span>&#9313;</span>
+	    <img src="left.png">
+	    ボタンで 1週間前、
+	    <img src="right.png">
+	    ボタンで 1週間後の履歴を閲覧できます。</li>
+	  <li><span>&#9314;</span>ご家族がお出かけ中は「出」と表示されます。</li>
+	  <li><span>&#9315;</span>ページ下部に選択した日付の薬箱を開閉した時間が表示されます。<br>
+	    <span>&emsp;</span>選択している日付は黒枠で囲まれています。</li>
+	</ol>
+	<br clear="left">
+	<span style="line-height: 300%"><br></span>
+      </p>
+    </div>
+
+    <div class="tit">
+      <center><h2>「使用設定」 の使い方</h2></center>
+      <p>
+	<img src="settingPicture.png" align="left" width="400">
+	<br>
+	<ol>
+	  <li><span>&#9312;</span>ご家族がお薬を飲み忘れた時に薬箱から鳴るアラームの時間を設定できます</li>
+	  <li><span>&#9313;</span>E メールまたは LINE への通知の ON/OFF を切り替えることができます</li>
+	  <li><span>&#9314;</span>E メールまたは LINE へ通知を行う条件を設定できます</li>
+	  <li><span>&#9315;</span>変更ボタンで使い方ページでの変更箇所を全て反映させます</li>
+	</ol>
+	<br clear="left">
+	<span style="line-height: 300%"><br></span>
+      </p>
+    </div>
+    <script type="text/javascript">
+    $(function() {
+      $(top1).click(function() {
+        window.location.href = './userMyPage.php';
+      });
+    });
+    </script>
+</p>
+</body>
+</html>

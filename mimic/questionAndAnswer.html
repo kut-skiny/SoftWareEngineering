@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>株式会社 skiny</title>
+    <script type="text/javascript" src="./jquery-3.2.1.min.js"></script>
+    <link rel="stylesheet" type"text/css" href="questionAndAnswer.css">
+    <META charset="UTF-8" name="viewport" content="width=device-width">
+  </head>
+  <body>
+    <!-- 題名 -->
+    <div class="right" id="top1">
+      <p>安否確認システム</p>
+      <p>ミミック　　</p>
+    </div>
+
+    <center><h1><span class="question">Q</span> & <span class="answer">A</span><h1></center>
+
+    <!-- Q & A 開始 -->
+    <div>
+      <ul>
+	<li class="q"><span class="question">Q</span>壊れたんだけどどうしたらいいの？</li>
+	<li class="a"><span class="answer">A</span>ページ下の問い合わせメールアドレスまでご連絡ください</li>
+      </ul>
+      <ul>
+	<li class="q"><span class="question">Q</span>装置を移動してもいいですか？</li>
+	<li class="a"><span class="answer">A</span>通信が行えなくなる可能性がありますので移動はご遠慮ください</li>
+      </ul>
+      <ul>
+	<li class="q"><span class="question">Q</span>薬箱を他人に譲渡してもいいですか？</li>
+	<li class="a"><span class="answer">A</span>他人への譲渡はおやめ下さい</li>
+      </ul>
+      <ul>
+	<li class="q"><span class="question">Q</span>退会したんですがどうすればいいの？</li>
+	<li class="a"><span class="answer">A</span>ページ下の問い合わせメールアドレスまでご連絡ください</li>
+      </ul>
+    </div>
+    <script type="text/javascript">
+    $(function() {
+      $(top1).click(function() {
+        window.location.href = './userMyPage.php';
+      });
+    });
+    </script>
+    <p><center><h4>お問い合わせメールアドレス　　skiny@skiny.ne.jp<h4></center></p>
+  </body>
+</html>

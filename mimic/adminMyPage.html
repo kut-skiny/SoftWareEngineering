@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<meta charset="UTF-8" name="viewport" content="width=device-width">
+<html>
+<head>
+<title>
+  管理者マイページ
+</title>
+<script type="text/javascript" src="./jquery-3.2.1.min.js"></script>
+<style type="text/css">
+div.button{
+  text-align:center;
+}
+button.button1{
+    font-size: 1.4em;
+    font-weight: bold;
+    margin: 10px;
+    padding: 10px 30px;
+    background-color: #248;
+    color: #fff;
+    border-style: none;
+    width: 200px;
+    height: 60px;
+}
+
+button.button1:hover {
+    background-color: #24d;
+    color: #fff;
+}
+
+
+li {
+  list-style:none;
+}
+div.pagetop {
+  display: inline;
+}
+input#button3 {
+  width: 150px; height: 40px;
+}
+li.right {
+  float: right;
+}
+ul.pagetop li{
+  display: inline-block;
+}
+/*
+#menu ul{
+margin: 0;
+padding: 0;
+list-style-type: none;
+}
+#menu li{
+display: inline;
+padding: 0;
+margin: 0;
+}
+#menu li a{
+display: block;
+border-left: 8px solid #474655;
+border-top: 1px solid #474655;
+border-right: 1px solid #474655;
+border-bottom: 1px solid #474655;
+background-color: #fff;
+padding: 3px 10px;
+text-decoration: none;
+color: #333;
+width: 150px;
+margin: 1px 0px;
+text-align: left;
+font-size: 14px;
+}
+#menu li a:hover{
+border-left: 8px solid #474655;
+border-top: 1px solid #474655;
+border-right: 1px solid #474655;
+border-bottom: 1px solid #474655;
+background-color: #d7efd7;
+}
+*/
+</style>
+</head>
+<body>
+  <div >
+  <ul class="pagetop">
+  <li><h1 id="top1">　ミミック　　</h1></li>
+  <li class="right"><input id="button3" type="button" value="ログアウト" onClick="location.href='login.php'"/></li>
+  </ul>
+  </div>
+  <h1><center>管理者マイページ</center></h1>
+  <form>
+  <div class="button">
+    <ul>
+    <li><button class="button1" type="button" value="新規契約登録" onClick="location.href='registerContract.html'">
+      新規契約登録
+    </button></li>
+    <li><button class="button1" type="button" value="契約検索" onClick="location.href='searchContract2.html'">
+      契約検索
+    </button></li>
+  </ul>
+  </div>
+  </form>
+
+  <script type="text/javascript">
+  $(function() {
+    $(top1).click(function() {
+      window.location.href = './adminMyPage.html';
+    });
+  });
+  </script>
+</body>
+</html>

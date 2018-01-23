@@ -1,0 +1,49 @@
+div.right p{
+    margin: 0.1em 0px;
+    text-align: right;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+li.q {
+    list-style-type: none;
+    list-style-position: outside;
+    color: blue;
+    font-size: 25px;
+    font-weight: bold;
+    margin: 1em 0px;
+}
+
+li.a {
+    list-style-type: none;
+    margin: 1em 0px;
+    font-size: 20px;
+    font-weight: bold;
+    margin: 1em 0px;
+}
+
+ul{
+    margin: 2em 0px;
+    border: 2px skyblue dashed;
+    background: #f3fbff;
+}
+
+span.question{
+    border: 2px solid blue;
+    padding: 2px;
+    margin: 5px;
+    background: blue;
+    font-size: 28px;
+    font-weight: bold;
+    color: white;
+}
+
+span.answer{
+    border: 2px solid red;
+    padding: 2px;
+    margin: 5px;
+    background: red;
+    font-size: 28px;
+    font-weight: bold;
+    color: white;
+}
