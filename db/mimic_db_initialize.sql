@@ -11,10 +11,10 @@ INSERT INTO `users` VALUES (
   'example@mail.com',
   '09012345678',
   '東京都東京市東京1-1',
-  '',
-  '',
+  0,
+  0,
   now(),
-  ''
+  0
 );
 
 INSERT INTO `contracts` VALUES (
@@ -22,10 +22,10 @@ INSERT INTO `contracts` VALUES (
   '10000001',
   '山田花子',
   inet_aton('172.0.0.1'),
-  '',
-  '',
+  0,
+  0,
   now(),
-  ''
+  0
 );
 
 INSERT INTO `configurations` VALUES (

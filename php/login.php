@@ -25,21 +25,36 @@ if (isset($_POST["login"])) {
             $stmt->bindValue(2, $pass, PDO::PARAM_STR);
             $stmt->execute();
             $count = (int)$stmt->fetchColumn();
+            $stmt2 = $dbh->prepare("select count(*) from administrators where id = ? and password = ?");
+            $stmt2->bindValue(1, $id, PDO::PARAM_STR);
+            $stmt2->bindValue(2, $pass, PDO::PARAM_STR);
+            $stmt2->execute();
+            $count2 = (int)$stmt2->fetchColumn();
+
+
             if ( $count > 0) {
-                $foo = True;
                 #$errorMessage = 'ログイン成功';
                 $_SESSION['id'] = $_POST['id'];
-                header('Location: ./user.php');
+                header('Location: ./userMypage.php');
                 exit;
-            } else {
-                $foo = False;
+            } elseif ($count2 > 0){
+                $_SESSION['id'] = $_POST['id'];
+                header('Location: ./adminMyPage.html');
+                exit;
+            }else {
                 $errorMessage = 'ユーザは存在しない';
             }
+
+
+
             $dbh = null;
         } catch (PDOException $e) {
             $errorMessage = 'エラー発生';
             exit("データベースに接続できませんでした。<br>" . htmlspecialchars($e->getMessage()) . "<br>");
         }
+
+
+
     }
 }
 
@@ -49,16 +64,16 @@ if (isset($_POST["login"])) {
 <!DOCTTYPE html>
 <html>
 <head>
-    <meta charset="utf-8">
+    <meta charset="utf-8" name="viewport" content="width=device-width">
     <title>ログイン画面</title>
 </head>
 <body>
     <h1>ログイン画面</h1>
     <form method = "post" action = "login.php">
         <p><?php echo $errorMessage ?></p>
-        契約者ID<input type = "text" name = "id"  placeholder = "ID入れて">
+        契約者ID<input type = "text" name = "id"  placeholder = "ID入れて" autocomplete="off">
         <br>
-        パスワード<input type = "text" name = "pass" > <br>
+        パスワード<input type = "password" name = "pass" > <br>
         <input type = "submit" id = "login" name = "login" value = "ログイン" >
     </form>
 </body>

@@ -75,6 +75,32 @@ $(function() {
   $("#phone").val(userdata.data6);
   $("#ip").val(userdata.data7);
   $('#button1').click(function() {
+    var err = '0';
+    if($('#userid').val().length == 0 || $('#userid').val().length > 20){
+      err = '1';
+    }
+    if($('#name1').val().length == 0 || $('#name1').val().length > 20){
+      err = '1';
+    }
+    if($('#name2').val().length == 0 || $('#name2').val().length > 20){
+      err = '1';
+    }
+    if($('#pass').val().length == 0 || $('#pass').val().length > 20){
+      err = '1';
+    }
+    if($('#mail').val().length < 3 || $('#mail').val().length > 30){
+      err = '1';
+    }
+    if(isNaN(phone) || phone.length < 10 || phone.length > 11){
+      err = '1';
+    }
+    if(isNaN($('#ip').val()) || $('#ip').val().length < 4 || $('#ip').val().length > 12){
+      err = '1';
+    }
+    if(err == '1'){
+      window.alert('入力情報が間違っています');
+      return;
+    }
     $.post('sample.php',
       {
         id: $('#userid').val(), name1: $('#name1').val(), name2: $('#name2').val()
@@ -91,6 +117,7 @@ $(function() {
     });
   });
   $('#button2').click(function() {
+
     $.post('sample.php',
       {
         id: $('#userid').val(), name1: $('#name1').val(), name2: $('#name2').val()

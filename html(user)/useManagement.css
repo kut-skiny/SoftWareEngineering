@@ -30,3 +30,10 @@ div.right {
 .tex{
     color: black;
 }
+
+div.tit{
+    margin: 2em 0px;
+    margin-under: 10px;
+    padding: 5px;
+    border: 1px blue dashed;
+}
