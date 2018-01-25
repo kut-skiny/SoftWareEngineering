@@ -44,7 +44,7 @@ try{
     <form>
       <div class="button">
 	<ul>
-	  <li><button class="button1" type="button" value="履歴" onClick="location.href='history.html'">履歴</li>
+	  <li><button class="button1" type="button" value="履歴" onClick="location.href='history.php'">履歴</li>
       <li><button class="button1" type="button" value="使用設定" onClick="location.href='getConf.php'">使用設定</li>
       <li><button class="button1" type="button" value="使い方" onClick="location.href='useManagement.html'">使い方</li>
       <li><button class="button1" type="button" value="QandA" onClick="location.href='questionAndAnswer.html'">Q & A</li>

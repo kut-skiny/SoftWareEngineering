@@ -77,9 +77,9 @@ try{
     echo "薬箱利用者名：" . $result['partner'] . "<br>";
     echo "現在のパスワード：" . $result['password'] . "<br>";
     ?>
-    <a>パスワード変更 : <input type = "text" name = "pass2" value = "<?php echo $result['password']; ?>" ></a>
+    <a>パスワード変更 : <input type = "password" name = "pass2" value = "<?php echo $result['password']; ?>" ></a>
     <br>
-    <a>パスワード再入力 : <input type = "text" name = "pass3" value = "<?php echo $result['password']; ?>" ></a>
+    <a>パスワード再入力 : <input type = "password" name = "pass3" value = "<?php echo $result['password']; ?>" ></a>
     <br>
     <a>メールアドレス : <input type = "text" name = "mail" value = "<?php echo $result['mail']; ?>" ></a>
     <br>

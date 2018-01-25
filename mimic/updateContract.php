@@ -33,11 +33,12 @@ try {
   $stmt->bindValue(6, $userid);
   $stmt->execute();
   $stmt2 = $dbh->prepare("update contracts set user_id = ?, partner = ?, ip_address = ?, updated_at = ? where id = ?;");
+  $cid = (int)$userid + 10000000;
   $stmt2->bindValue(1, $userid);
   $stmt2->bindValue(2, $partnername);
   $stmt2->bindValue(3, $userip);
   $stmt2->bindValue(4, $sdate);
-  $stmt2->bindValue(5, 20000002);
+  $stmt2->bindValue(5, (string)$cid);
   $stmt2->execute();
 
 //update contracts set user_id = 10000002, partner = 'DAIGO', ip_address = '123456789', updated_at = '2018-01-22 17:31:05' where id = 20000002;
