@@ -1,0 +1,73 @@
+div.button{
+  text-align:center;
+}
+
+button.button1{
+    font-size: 1.4em;
+    font-weight: bold;
+    margin: 10px;
+    padding: 10px 30px;
+    background-color: #248;
+    color: #fff;
+    border-style: none;
+    width: 200px;
+    height: 60px;
+}
+
+button.button1:hover {
+    background-color: #24d;
+    color: #fff;
+}
+
+
+li {
+  list-style:none;
+}
+
+div.pagetop {
+  display: inline;
+}
+input#button3 {
+  font-size: 1.4em;
+  width: 150px; height: 50px;
+}
+li.right {
+  float: right;
+}
+ul.pagetop li{
+  display: inline-block;
+}
+/*
+#menu ul{
+margin: 0;
+padding: 0;
+list-style-type: none;
+}
+#menu li{
+display: inline;
+padding: 0;
+margin: 0;
+}
+#menu li a{
+display: block;
+border-left: 8px solid #474655;
+border-top: 1px solid #474655;
+border-right: 1px solid #474655;
+border-bottom: 1px solid #474655;
+background-color: #fff;
+padding: 3px 10px;
+text-decoration: none;
+color: #333;
+width: 150px;
+margin: 1px 0px;
+text-align: left;
+font-size: 14px;
+}
+#menu li a:hover{
+border-left: 8px solid #474655;
+border-top: 1px solid #474655;
+border-right: 1px solid #474655;
+border-bottom: 1px solid #474655;
+background-color: #d7efd7;
+}
+*/

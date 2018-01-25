@@ -35,8 +35,8 @@ try{
   </head>
   <body>
     <ul class="pagetop">
-    <li><h1 id="top1" onClick="location.href='login.html'"/>　ミミック　　</h1></li>
-    <li class="right"><input id="button3" type="button" value="ログアウト" onClick="location.href='login.html'"/></li>
+    <li><h1 id="top1" onClick="location.href='login.php'"/>　ミミック　　</h1></li>
+    <li class="right"><input id="button3" type="button" value="ログアウト" onClick="location.href='login.php'"/></li>
     </ul>
     <center>
 

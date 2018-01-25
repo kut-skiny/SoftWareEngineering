@@ -1,0 +1,23 @@
+ul li {
+  list-style:none;
+  width: 50%;
+  margin: 0 auto;
+  max-width: 500px;
+
+}
+label {
+  margin-right: 10px;
+  width: 40%;
+  float: left;
+  text-align: right;
+}
+ul {
+  width: 50%;
+  margin: 0 auto;
+}
+input#send {
+  font-weight: bold;
+  display: block;
+  margin: 0 auto;
+  width: 150px; height: 40px;
+}
