@@ -61,20 +61,26 @@ if (isset($_POST["login"])) {
 
 ?>
 
-<!DOCTTYPE html>
+<!DOCTYPE html>
 <html>
+<meta http-equiv="Content-Type" content="text/html"; charset="UTF-8"　name="viewport" content="width=device-width">
 <head>
-    <meta charset="utf-8" name="viewport" content="width=device-width">
-    <title>ログイン画面</title>
+    <title>株式会社 skiny</title>
+    <link rel="stylesheet" type"text/css" href="loginPage.css">
 </head>
 <body>
-    <h1>ログイン画面</h1>
-    <form method = "post" action = "login.php">
+    <center>
+        <h1>安否確認システム　ミミック</h1>
         <p><?php echo $errorMessage ?></p>
-        契約者ID<input type = "text" name = "id"  placeholder = "ID入れて" autocomplete="off">
-        <br>
-        パスワード<input type = "password" name = "pass" > <br>
-        <input type = "submit" id = "login" name = "login" value = "ログイン" >
-    </form>
+        <form method = "post" action = "login.php">
+            <div class="button">
+                <ul>
+                    <p><li><label for="name">契約者ID</label><input type = "text" name = "id"  placeholder = "ID入れて" autocomplete="off"></li></p>
+                    <p><li><label for="name">パスワード</label><input type = "password" name = "pass" ></li></p>
+                </ul>
+                <br>
+                <input id="button1" type="submit" name="login" value="ログイン">
+        </form>
+    </center>
 </body>
 </html>

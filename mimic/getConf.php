@@ -66,11 +66,25 @@ try{
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8" name="viewport" content="width=device-width">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <script type="text/javascript" src="./jquery-3.2.1.min.js"></script>
+    <META charset="UTF-8" name="viewport" content="width=device-width">
     <title>使用設定画面</title>
+
+    <script type="text/javascript">
+    $(function() {
+        $(top1).click(function() {
+          window.location.href = './userMyPage.php';
+        });
+    });
+    </script>
+
 </head>
 <body>
-    <h1>使用設定</h1>
+
+    <h1 id = "top1"><left>　　ミミック　　</left></h1>
+    <h1><center>使用設定</center></h1>
+    <center>
     <form method = "post" action = "setConf.php">
         <!--朝のアラームを利用するかのチェックボックス
             if文でDBの設定情報(onまたはoff)を判定し、phpで出力する。htmlはその出力をプログラムコードとして認識する。-->
@@ -183,6 +197,7 @@ try{
         <input type = "text" name = "mail" value = "<?php echo $result['mail']; ?>" >
         <br>
 
+
         <h3>LINE通知</h3>
 
         <input type = "hidden" name = "lineOnce" value = "off"  <?php if($dbLineOnce === "off"){echo "checked";}; ?>>
@@ -207,5 +222,7 @@ try{
         <input type = "submit" name = "send" value = "設定を変更する" >
     </form>
     <a href="userMypage.php">戻る</a>
+</center>
+
 </body>
 </html>
