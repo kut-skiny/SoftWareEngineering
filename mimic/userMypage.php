@@ -34,7 +34,10 @@ try{
    <META charset="UTF-8" name="viewport" content="width=device-width">
   </head>
   <body>
-
+    <ul class="pagetop">
+    <li><h1 id="top1" onClick="location.href='userMyPage.php'"/>　ミミック　　</h1></li>
+    <li class="right"><input id="button3" type="button" value="ログアウト" onClick="location.href='logout.php'"/></li>
+    </ul>
     <center>
 
 
@@ -48,8 +51,7 @@ try{
       <li><button class="button1" type="button" value="使用設定" onClick="location.href='getConf.php'">使用設定</li>
       <li><button class="button1" type="button" value="使い方" onClick="location.href='useManagement.html'">使い方</li>
       <li><button class="button1" type="button" value="QandA" onClick="location.href='questionAndAnswer.html'">Q & A</li>
-      <li><button class="button1" type="button" value="契約情報" onClick="location.href='getContract.php'">契約情報</li>
-      <li><button class="button1" type="button" value="ログアウト" onClick="location.href='logout.php'">ログアウト</li>
+      <li><button class="button1" type="button" value="契約情報" onClick="location.href='contractInformation.php'">契約情報</li>
 
 	</ul>
       </div>

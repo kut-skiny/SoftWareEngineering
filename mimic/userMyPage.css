@@ -28,7 +28,8 @@ div.pagetop {
   display: inline;
 }
 input#button3 {
-  width: 150px; height: 40px;
+  font-size: 1.4em;
+  width: 150px; height: 50px;
 }
 li.right {
   float: right;

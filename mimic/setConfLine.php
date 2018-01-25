@@ -35,10 +35,10 @@ $dbMailBlank = $_POST['mailBlank'];
 $mailBlankTime = $_POST['mailBlankTime'];
 $dbMailOnce = $_POST['mailOnce'];
 
-$dbLine = "LINE";
-$dbLineBlank = "off";
-$lineBlankTime = "48";
-$dbLineOnce = "off";
+$dbLine = $_POST['line'];
+$dbLineBlank = $_POST['lineBlank'];
+$lineBlankTime = $_POST['lineBlankTime'];
+$dbLineOnce = $_POST['lineOnce'];
 
 #SQL文用に書式を整える
 $dbMorning = $morningHour . ":" . $morningMinute . ":" . "0" ;

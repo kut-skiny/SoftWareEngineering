@@ -67,33 +67,31 @@ try{
 <head>
     <meta charset="utf-8" name="viewport" content="width=device-width">
     <title>マイページ</title>
+    <link rel="stylesheet" type"text/css" href="contractInformation.css">
 </head>
 <body>
-    <h1>契約情報</h1>
+    <h1 id="top1" onClick="location.href='userMyPage.php'"/><left>　ミミック　　</left></h1>
+    <center><h1>契約情報</h1></center>
     <form method = "post" action = "getContract.php">
+    <ul>
     <?php
-    echo "契約者ID：" . $result['user_id'] . "<br>";
-    echo "契約者名：" . $result['name'] . "<br>";
-    echo "薬箱利用者名：" . $result['partner'] . "<br>";
-    echo "現在のパスワード：" . $result['password'] . "<br>";
+    echo "<li><label>契約者ID : </label>" . $result['user_id'] . "</li>";
+    echo "<li><label>契約者名 : </label>" . $result['name'] . "</li>";
+    echo "<li><label>薬箱利用者名 : </label>" . $result['partner'] . "</li>";
+    echo "<li><label>現在のパスワード : </label>" . $result['password'] . "</li>";
     ?>
-    <a>パスワード変更 : <input type = "password" name = "pass2" value = "<?php echo $result['password']; ?>" ></a>
-    <br>
-    <a>パスワード再入力 : <input type = "password" name = "pass3" value = "<?php echo $result['password']; ?>" ></a>
-    <br>
-    <a>メールアドレス : <input type = "text" name = "mail" value = "<?php echo $result['mail']; ?>" ></a>
-    <br>
-    <a>電話番号 : <input type = "text" name = "phone" value = "<?php echo $result['phone_number']; ?>" ></a>
+    <li><label>パスワード変更 : </label> <input type = "password" name = "pass2" value = "<?php echo $result['password']; ?>" ></li>
+    <li><label>パスワード再入力 : </label> <input type = "password" name = "pass3" value = "<?php echo $result['password']; ?>" ></li>
+    <li><label>メールアドレス : </label> <input type = "text" name = "mail" value = "<?php echo $result['mail']; ?>" ></li>
+    <li><label>電話番号 : </label> <input type = "text" name = "phone" value = "<?php echo $result['phone_number']; ?>" ></li>
     <?php
-    echo "<br>";
-    echo "IPアドレス：" . $result['ip_address'] . "<br>";
+    echo "<li><label>IPアドレス : </label>" . $result['ip_address'] . "</li>";
     date_default_timezone_set('Asia/Tokyo');
-    echo "前回更新日時：" . $result['updated_at'];
+    echo "<li><label>前回更新日時 : </label>" . $result['updated_at'] . "</li>";
      ?>
-     <br>
-     <input type = "submit" id = "send" name = "send" value = "契約情報を変更する" >
+
+     <li><input type = "submit" id = "send" name = "send" value = "契約情報を変更する" ></li>
+     </ul>
     </form>
-    <br>
-    <a href = 'userMypage.php'>戻る</a>
 </body>
 </html>

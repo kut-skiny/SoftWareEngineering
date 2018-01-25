@@ -5,16 +5,20 @@
     <script type="text/javascript" src="./jquery-3.2.1.min.js"></script>
     <link rel="stylesheet" type"text/css" href="useManagement.css">
     <META charset="UTF-8" name="viewport" content="width=device-width">
+        <script type="text/javascript">
+        $(function() {
+            $(top1).click(function() {
+              window.location.href = './userMyPage.php';
+            });
+        });
+        </script>
   </head>
   <body>
 
     <!-- 題名 -->
-    <div class="right"><h3>
-	<div class="pGap" id="top1">
-	  <p>安否確認システム</p>
-	  <p>ミミック</p>
-	</div>
-    </h3></div>
+
+        <h1 id = "top1"><left>　　ミミック　　</left></h1>
+
     <center><h1>使い方<h1></center>
     <span style="line-height: 300%"><br></span>
 
@@ -22,18 +26,23 @@
     <div class="tit">
       <center><h2>「履歴」 の見方</h2></center>
       <p>
-	<img src="historyPicture.png" align="left" width="400">
+	<img src="./history" align="left" width="400">
 	<br>
 	<ol>
-	  <li><span>&#9312;</span>閲覧日は橙色で表示されます。</li>
-	  <li><span>&#9313;</span>
-	    <img src="left.png">
-	    ボタンで 1週間前、
-	    <img src="right.png">
-	    ボタンで 1週間後の履歴を閲覧できます。</li>
-	  <li><span>&#9314;</span>ご家族がお出かけ中は「出」と表示されます。</li>
-	  <li><span>&#9315;</span>ページ下部に選択した日付の薬箱を開閉した時間が表示されます。<br>
-	    <span>&emsp;</span>選択している日付は黒枠で囲まれています。</li>
+        <li><span>&#9312;</span>
+  	    <img src="img/hidari.gif">
+  	    ボタンで 1ヶ月前、
+  	    <img src="img/migi.gif">
+  	    ボタンで 1ヶ月後のカレンダーを閲覧できます。</li>
+	  <li><span>&#9313;</span>閲覧日は黄色で表示されます。</li>
+
+
+	  <li><span>&#9314;</span>選択した日付の開閉した時間と薬箱の状態が表示されます。<br>
+	    <span>&emsp;</span>薬箱の状態は3種類あります。<br>
+        <span>&emsp;</span>「◯」は設定時間に薬箱が開けられています。<br>
+        <span>&emsp;</span>「 × 」は設定時間に薬箱が開けられていません。<br>
+        <span>&emsp;</span>「 - 」は設定時間が先である状態です。<br>
+    </li>
 	</ol>
 	<br clear="left">
 	<span style="line-height: 300%"><br></span>
@@ -43,13 +52,11 @@
     <div class="tit">
       <center><h2>「使用設定」 の使い方</h2></center>
       <p>
-	<img src="settingPicture.png" align="left" width="400">
+	<img src="setting.png" align="left" width="400">
 	<br>
 	<ol>
-	  <li><span>&#9312;</span>ご家族がお薬を飲み忘れた時に薬箱から鳴るアラームの時間を設定できます</li>
-	  <li><span>&#9313;</span>E メールまたは LINE への通知の ON/OFF を切り替えることができます</li>
-	  <li><span>&#9314;</span>E メールまたは LINE へ通知を行う条件を設定できます</li>
-	  <li><span>&#9315;</span>変更ボタンで使い方ページでの変更箇所を全て反映させます</li>
+	  <li><span>&#9312;</span>ご家族がお薬を飲み忘れた時に薬箱から鳴るアラームの時間を設定できます。</li>
+	  <li><span>&#9313;</span>薬箱の開閉記録を送信するメールアドレスを変更できます。</li>
 	</ol>
 	<br clear="left">
 	<span style="line-height: 300%"><br></span>
