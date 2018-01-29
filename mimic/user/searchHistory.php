@@ -5,16 +5,12 @@ if (!isset($_SESSION["id"])) {
     exit;
 }
 
-$dsn  = 'mysql:dbname=mimic;host=localhost';
-$host = 'localhost';
-$username = 'root';
-$password = 'uz@1!Hm!';
-$dbname = 'mimic';
+require_once '../DBN.php';
 
 $id = $_SESSION["id"];
 $month = $_POST['month'];
 $day = $_POST['day'];
-try{
+
     if( (!empty($_POST['month'])) && (strcmp($_POST['day'], "　") != 0 )) {
         if ($_POST['month'] <= date('m') && $_POST['day'] <= date('d')){
 
@@ -159,7 +155,5 @@ for ($i = 0; $i < 4; $i++) {
     ;
 
 
-} catch (PDOException $e) {
-    exit("データベースに接続できませんでした。<br>" . htmlspecialchars($e->getMessage()) . "<br>");
-}
+
 ?>

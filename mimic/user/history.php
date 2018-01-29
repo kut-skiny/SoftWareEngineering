@@ -6,6 +6,7 @@ if (!isset($_SESSION["id"])) {
     exit;
 }
 
+require_once '../DBN.php';
 
 ?>
 
