@@ -2,23 +2,18 @@
 
 session_start();
 if (!isset($_SESSION["id"])) {
-    header("Location: Logout.php");
+    header("Location: ../logout.php");
     exit;
 }
 
+require_once '../DBN.php';
 
-$dsn  = 'mysql:dbname=mimic;host=localhost';
-$host = 'localhost';
-$username = 'root';
-$password = 'uz@1!Hm!';
-$dbname = 'soft';
 
 #idあってるか確認する（修正）
 $id = $_SESSION["id"];
 
 
-try{
-    $dbh = new PDO($dsn,$username,$password);
+
     #薬箱の設定情報を取得する
     $db = $dbh->prepare("select configurations.morning_enabled, configurations.morning_time, configurations.noon_enabled, configurations.noon_time, configurations.evening_enabled, configurations.evening_time, configurations.night_enabled, configurations.night_time, configurations.mail,
     configurations.mail_after_blank_time_enabled, configurations.blank_time_for_mail, configurations.mail_once_a_day_enabled, configurations.line, configurations.line_after_blank_time_enabled, configurations.blank_time_for_line, configurations.line_once_a_day_enabled, configurations.created_at, configurations.updated_at
@@ -57,9 +52,7 @@ try{
     #dbCreate = $result['created_at'];
     $dbupdate = $result['updated_at'];
     $dbh = null;
-} catch (PDOException $e) {
-    exit("データベースに接続できませんでした。<br>" . htmlspecialchars($e->getMessage()) . "<br>");
-}
+
 
 ?>
 
@@ -197,32 +190,14 @@ try{
         <input type = "text" name = "mail" value = "<?php echo $result['mail']; ?>" >
         <br>
 
-<!--
-        <h3>LINE通知</h3>
 
-        <input type = "hidden" name = "lineOnce" value = "off"  <?php if($dbLineOnce === "off"){echo "checked";}; ?>>
-        <input type = "checkbox" name = "lineOnce" value = "on" <?php if($dbLineOnce === "on"){echo "checked";}; ?>>
-        1日の開閉履歴(21時通知)
-        <br>
-        <input type = "hidden" name = "lineBlank" value = "off"  <?php if($dbLineBlank === "off"){echo "checked";}; ?>>
-        <input type = "checkbox" name = "lineBlank" value = "on" <?php if($dbLineBlank === "on"){echo "checked";}; ?>>
-        前回の開閉から
-        <select name = "lineBlankTime">
-            <option <?php if($dbLineBlankTime == 24) {echo 'selected';}?>>24</option>
-            <option <?php if($dbLineBlankTime == 36) {echo 'selected';}?>>36</option>
-            <option <?php if($dbLineBlankTime == 48) {echo 'selected';}?>>48</option>
-            <option <?php if($dbLineBlankTime == 60) {echo 'selected';}?>>60</option>
-        </select>
-        時間<br>
-        LINE IDの変更<br>
-        <input type = "text" name = "line" value = "<?php echo $result['line']; ?>" >
-    -->
+
         <br>
         <?php echo "前回更新日時：" . $dbupdate;?>
         <br>
         <input type = "submit" name = "send" value = "変更" >
     </form>
-    <a href="userMypage.php">戻る</a>
+    <!--<a href="userMypage.php">戻る</a>-->
 </center>
 
 </body>

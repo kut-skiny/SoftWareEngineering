@@ -11,11 +11,7 @@
 #$dbusername = 'root';
 #$password = 'tukasa96';
 #$dbname = 'mimic';
-$dsn  = 'mysql:dbname=mimic;host=localhost';
-$host = 'localhost';
-$dbusername = 'root';
-$password = 'uz@1!Hm!';
-$dbname = 'mimic';
+require_once '../DBN.php';
 
 #idあってるか確認する（修正）
 #$id = $_SESSION["id"];
@@ -28,8 +24,7 @@ $usermail = $_POST['mail'];
 $userphone = $_POST['phone'];
 $userip = $_POST['ip'];
 $sdate = date("Y-m-d H:i:s");
-try {
-    $dbh = new PDO($dsn,$dbusername,$password);
+
   $stmt = $dbh->prepare("insert into users(id,name,password,mail,phone_number,registered_at) values (?,?,?,?,?,?)");
   $stmt->bindValue(1, $userid);
   $stmt->bindValue(2, $username);
@@ -58,7 +53,5 @@ try {
   #dbCreate = $result['created_at'];
   #dbUpdate = $result['updated_at'];
   $dbh = null;
-} catch (PDOException $e) {
-  exit("データベースに接続できませんでした。<br>" . htmlspecialchars($e->getMessage()) . "<br>");
-}
+
 ?>

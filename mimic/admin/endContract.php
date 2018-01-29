@@ -4,11 +4,7 @@
 #$dbusername = 'root';
 #$password = 'tukasa96';
 #$dbname = 'mimic';
-$dsn  = 'mysql:dbname=mimic;host=localhost';
-$host = 'localhost';
-$dbusername = 'root';
-$password = 'uz@1!Hm!';
-$dbname = 'mimic';
+require_once '../DBN.php';
 #idあってるか確認する（修正）
 #$id = $_SESSION["id"];
 #契約終了させるやつ
@@ -20,8 +16,7 @@ $userid = $_POST['id'];
 #$userip = $_POST['ip'];
 date_default_timezone_set('Asia/Tokyo');
 $sdate = date("Y-m-d H:i:s");
-try {
-  $dbh = new PDO($dsn,$dbusername,$password);
+
   $stmt = $dbh->prepare("update users set deleted_at = ?, updated_at = ? where id = ?;");
   $stmt->bindValue(1, $sdate);
   $stmt->bindValue(2, $sdate);
@@ -36,7 +31,5 @@ try {
   #dbCreate = $result['created_at'];
   #dbUpdate = $result['updated_at'];
   $dbh = null;
-} catch (PDOException $e) {
-  exit("データベースに接続できませんでした。<br>" . htmlspecialchars($e->getMessage()) . "<br>");
-}
+
 ?>

@@ -11,17 +11,12 @@ if (isset($_POST["send"])) {
     $flag = 0;
 }
 
-$dsn  = 'mysql:dbname=mimic;host=localhost';
-$host = 'localhost';
-$username = 'root';
-$password = 'uz@1!Hm!';
-$dbname = 'mimic';
+require_once '../DBN.php';
 
 #idあってるか確認する（修正）
 $id = $_SESSION["id"];
 
-try{
-    $dbh = new PDO($dsn,$username,$password);
+
     #ログイン時に入力したIDをもとに、契約IDを検索。その後、契約IDと一致する契約情報を取り出す。
     if($flag == 1 && (strcmp($_POST["pass2"],$_POST["pass3"]) == 0)){ #&& (strcmp($_POST["pass2"],$_POST["pass3"])==0)){
         date_default_timezone_set('Asia/Tokyo');
@@ -56,9 +51,7 @@ try{
     //$result = $stmt->fetch(PDO::FETCH_ASSOC);
 
     $dbh = null;
-   } catch (PDOException $e) {
-       exit("データベースに接続できませんでした。<br>" . htmlspecialchars($e->getMessage()) . "<br>");
-   }
+
 
 ?>
 

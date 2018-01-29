@@ -1,10 +1,6 @@
 <?php
 
-$dsn  = 'mysql:dbname=mimic;host=localhost';
-$host = 'localhost';
-$username = 'root';
-$password = 'uz@1!Hm!';
-$dbname = 'mimic';
+require_once '../DBN.php';
 
 #searchContract.htmlからデータを受け取る
 $userID = $_POST['id'];             #契約者ID
@@ -15,9 +11,7 @@ $userName = $_POST['name2'];        #薬箱利用者名
 #データの受け取れていることを確認
 #echo $userID . ":" . $contractName . ":" . $userName;
 
-try{
-    #データベースへ接続
-    $dbh = new PDO($dsn,$username,$password);
+
     #sql文の生成(契約者IDを基に、契約者名と薬箱利用者名を取り出す)
     //partner=おじいちゃん
     $stmt = $dbh->prepare("select users.id, users.name, contracts.partner, users.password, users.mail, users.phone_number, contracts.ip_address from users, contracts where contracts.id = ? and contracts.user_id = users.id");
@@ -34,7 +28,5 @@ try{
     //echo $data['id'] . $data['userName'] . $data['partner'];
     echo json_encode($data, JSON_UNESCAPED_UNICODE);
 
-} catch (PDOException $e) {
-    exit("データベースに接続できませんでした。<br>" . htmlspecialchars($e->getMessage()) . "<br>");
-}
+
 ?>

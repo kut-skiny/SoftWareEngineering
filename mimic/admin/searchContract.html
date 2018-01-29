@@ -52,7 +52,7 @@ $(function() {
     window.location.href = './adminMyPage.html';
   });
   $('#button1').click(function() {
-    $.post("searchContract3.php",
+    $.post("searchContract.php",
       {
           id : $('#userid').val(), name1: $('#name1').val(), name2: $('#name2').val(), mail: $("#mail").val(), phone: $("#phone").val(), ip: $("#ip").val()
       }

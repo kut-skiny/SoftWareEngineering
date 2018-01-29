@@ -5,11 +5,7 @@ if (!isset($_SESSION["id"])) {
     exit;
 }
 
-$dsn  = 'mysql:dbname=mimic;host=localhost';
-$host = 'localhost';
-$username = 'root';
-$password = 'uz@1!Hm!';
-$dbname = 'soft';
+require_once '../DBN.php';
 
 $id = $_SESSION["id"];
 
@@ -48,8 +44,7 @@ $dbNight = $nightHour .  ":" . $nightMinute . ":" ."0";
 $dbMailBlankTime = $mailBlankTime . ":" . "0" . ":" . "0";
 $dbLineBlankTime = $lineBlankTime . ":" . "0" . ":" . "0";
 
-try{
-    $dbh = new PDO($dsn,$username,$password);
+
     #ユーザIDと一致する契約IDを取得する
     $stmt = $dbh->prepare("select id from contracts where user_id = ? ");
     $stmt->bindValue(1, $id, PDO::PARAM_STR);
@@ -83,9 +78,7 @@ try{
     $stmt->execute();
 
     $dbh = null;
-   } catch (PDOException $e) {
-       exit("データベースに接続できませんでした。<br>" . htmlspecialchars($e->getMessage()) . "<br>");
-   }
+
 
    //$testpath = "python /Library/WebServer/Documents/alarmTransmission.py ".$dbMorningHour.":".$dbMorningMinute." ".$dbNoonHour.":".$dbNoonMinute." ".$dbEveningHour.":"$dbEveningMinute." ".$dbNightHour.":".$dbNightMinute ;
    //exec($testpath,$outparam);

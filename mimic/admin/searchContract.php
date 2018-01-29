@@ -1,10 +1,6 @@
 <?php
 
-$dsn  = 'mysql:dbname=mimic;host=localhost';
-$host = 'localhost';
-$username = 'root';
-$password = 'uz@1!Hm!';
-$dbname = 'mimic';
+require_once '../DBN.php';
 
 #searchContract.htmlからデータを受け取る
 $userID = $_POST['id'];             #契約者ID
@@ -16,8 +12,7 @@ $ip = $_POST['ip'];
 #$ = $_POST[''];
 
 
-try{
-    $dbh = new PDO($dsn,$username,$password);
+
     //IDで検索
     if (!empty($userID)) {
         #データベースへ接続
@@ -106,7 +101,5 @@ try{
         echo json_encode($data = array( null, null, null), JSON_UNESCAPED_UNICODE);
     }
 
-} catch (PDOException $e) {
-    exit("データベースに接続できませんでした。<br>" . htmlspecialchars($e->getMessage()) . "<br>");
-}
+
 ?>

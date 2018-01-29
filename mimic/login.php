@@ -1,11 +1,8 @@
 <?php
-$dsn  = 'mysql:dbname=mimic;host=localhost';
-$host = 'localhost';
-$username = 'root';
-$password = 'uz@1!Hm!';
-$dbname = 'soft';
 
 session_start();
+require_once './DBN.php';
+
 
 $errorMessage = "";
 
@@ -18,8 +15,6 @@ if (isset($_POST["login"])) {
     if (!empty($_POST["id"]) && !empty($_POST["pass"])) {
         $id = $_POST["id"];
         $pass = $_POST["pass"];
-        try{
-            $dbh = new PDO($dsn,$username,$password);
             $stmt = $dbh->prepare("select count(*) from users where id = ? and password = ?");
             $stmt->bindValue(1, $id, PDO::PARAM_STR);
             $stmt->bindValue(2, $pass, PDO::PARAM_STR);
@@ -35,27 +30,17 @@ if (isset($_POST["login"])) {
             if ( $count > 0) {
                 #$errorMessage = 'ログイン成功';
                 $_SESSION['id'] = $_POST['id'];
-                header('Location: ./userMypage.php');
+                header('Location: user/userMypage.php');
                 exit;
             } elseif ($count2 > 0){
                 $_SESSION['id'] = $_POST['id'];
-                header('Location: ./adminMyPage.html');
+                header('Location: admin/adminMyPage.html');
                 exit;
             }else {
                 $errorMessage = 'ユーザは存在しない';
             }
-
-
-
             $dbh = null;
-        } catch (PDOException $e) {
-            $errorMessage = 'エラー発生';
-            exit("データベースに接続できませんでした。<br>" . htmlspecialchars($e->getMessage()) . "<br>");
         }
-
-
-
-    }
 }
 
 
